@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="BatchJobExecutionContextEditDlg" widgetVar="BatchJobExecutionContextEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditBatchJobExecutionContextTitle}">
+            <h:form id="BatchJobExecutionContextEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{batchJobExecutionContextController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditBatchJobExecutionContextLabel_jobExecutionId}" for="jobExecutionId" />
+                        <p:inputText id="jobExecutionId" value="#{batchJobExecutionContextController.selected.jobExecutionId}" title="#{bundle.EditBatchJobExecutionContextTitle_jobExecutionId}" required="true" requiredMessage="#{bundle.EditBatchJobExecutionContextRequiredMessage_jobExecutionId}"/>
+                        <p:outputLabel value="#{bundle.EditBatchJobExecutionContextLabel_shortContext}" for="shortContext" />
+                        <p:inputText id="shortContext" value="#{batchJobExecutionContextController.selected.shortContext}" title="#{bundle.EditBatchJobExecutionContextTitle_shortContext}" required="true" requiredMessage="#{bundle.EditBatchJobExecutionContextRequiredMessage_shortContext}"/>
+                        <p:outputLabel value="#{bundle.EditBatchJobExecutionContextLabel_serializedContext}" for="serializedContext" />
+                        <p:inputTextarea rows="4" cols="30" id="serializedContext" value="#{batchJobExecutionContextController.selected.serializedContext}" title="#{bundle.EditBatchJobExecutionContextTitle_serializedContext}" />
+                        <p:outputLabel value="#{bundle.EditBatchJobExecutionContextLabel_batchJobExecution}" for="batchJobExecution" />
+                        <p:selectOneMenu id="batchJobExecution" value="#{batchJobExecutionContextController.selected.batchJobExecution}" required="true" requiredMessage="#{bundle.EditBatchJobExecutionContextRequiredMessage_batchJobExecution}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{batchJobExecutionController.itemsAvailableSelectOne}"
+                                           var="batchJobExecutionItem"
+                                           itemValue="#{batchJobExecutionItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{batchJobExecutionContextController.update}" value="#{bundle.Save}" update="display,:BatchJobExecutionContextListForm:datalist,:growl" oncomplete="handleSubmit(args, 'BatchJobExecutionContextEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="BatchJobExecutionContextEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

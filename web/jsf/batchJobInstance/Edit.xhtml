@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="BatchJobInstanceEditDlg" widgetVar="BatchJobInstanceEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditBatchJobInstanceTitle}">
+            <h:form id="BatchJobInstanceEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{batchJobInstanceController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditBatchJobInstanceLabel_jobInstanceId}" for="jobInstanceId" />
+                        <p:inputText id="jobInstanceId" value="#{batchJobInstanceController.selected.jobInstanceId}" title="#{bundle.EditBatchJobInstanceTitle_jobInstanceId}" required="true" requiredMessage="#{bundle.EditBatchJobInstanceRequiredMessage_jobInstanceId}"/>
+                        <p:outputLabel value="#{bundle.EditBatchJobInstanceLabel_version}" for="version" />
+                        <p:inputText id="version" value="#{batchJobInstanceController.selected.version}" title="#{bundle.EditBatchJobInstanceTitle_version}" />
+                        <p:outputLabel value="#{bundle.EditBatchJobInstanceLabel_jobName}" for="jobName" />
+                        <p:inputText id="jobName" value="#{batchJobInstanceController.selected.jobName}" title="#{bundle.EditBatchJobInstanceTitle_jobName}" required="true" requiredMessage="#{bundle.EditBatchJobInstanceRequiredMessage_jobName}"/>
+                        <p:outputLabel value="#{bundle.EditBatchJobInstanceLabel_jobKey}" for="jobKey" />
+                        <p:inputText id="jobKey" value="#{batchJobInstanceController.selected.jobKey}" title="#{bundle.EditBatchJobInstanceTitle_jobKey}" required="true" requiredMessage="#{bundle.EditBatchJobInstanceRequiredMessage_jobKey}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{batchJobInstanceController.update}" value="#{bundle.Save}" update="display,:BatchJobInstanceListForm:datalist,:growl" oncomplete="handleSubmit(args, 'BatchJobInstanceEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="BatchJobInstanceEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

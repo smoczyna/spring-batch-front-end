@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="BatchStepExecutionContextCreateDlg" widgetVar="BatchStepExecutionContextCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateBatchStepExecutionContextTitle}">
+            <h:form id="BatchStepExecutionContextCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{batchStepExecutionContextController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateBatchStepExecutionContextLabel_stepExecutionId}" for="stepExecutionId" />
+                        <p:inputText id="stepExecutionId" value="#{batchStepExecutionContextController.selected.stepExecutionId}" title="#{bundle.CreateBatchStepExecutionContextTitle_stepExecutionId}" required="true" requiredMessage="#{bundle.CreateBatchStepExecutionContextRequiredMessage_stepExecutionId}"/>
+                        <p:outputLabel value="#{bundle.CreateBatchStepExecutionContextLabel_shortContext}" for="shortContext" />
+                        <p:inputText id="shortContext" value="#{batchStepExecutionContextController.selected.shortContext}" title="#{bundle.CreateBatchStepExecutionContextTitle_shortContext}" required="true" requiredMessage="#{bundle.CreateBatchStepExecutionContextRequiredMessage_shortContext}"/>
+                        <p:outputLabel value="#{bundle.CreateBatchStepExecutionContextLabel_serializedContext}" for="serializedContext" />
+                        <p:inputTextarea rows="4" cols="30" id="serializedContext" value="#{batchStepExecutionContextController.selected.serializedContext}" title="#{bundle.CreateBatchStepExecutionContextTitle_serializedContext}" />
+                        <p:outputLabel value="#{bundle.CreateBatchStepExecutionContextLabel_batchStepExecution}" for="batchStepExecution" />
+                        <p:selectOneMenu id="batchStepExecution" value="#{batchStepExecutionContextController.selected.batchStepExecution}" required="true" requiredMessage="#{bundle.EditBatchStepExecutionContextRequiredMessage_batchStepExecution}">
+                            <f:selectItems value="#{batchStepExecutionController.itemsAvailableSelectOne}"
+                                           var="batchStepExecutionItem"
+                                           itemValue="#{batchStepExecutionItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{batchStepExecutionContextController.create}" value="#{bundle.Save}" update="display,:BatchStepExecutionContextListForm:datalist,:growl" oncomplete="handleSubmit(args,'BatchStepExecutionContextCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="BatchStepExecutionContextCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="BatchStepExecutionEditDlg" widgetVar="BatchStepExecutionEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditBatchStepExecutionTitle}">
+            <h:form id="BatchStepExecutionEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{batchStepExecutionController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditBatchStepExecutionLabel_stepExecutionId}" for="stepExecutionId" />
+                        <p:inputText id="stepExecutionId" value="#{batchStepExecutionController.selected.stepExecutionId}" title="#{bundle.EditBatchStepExecutionTitle_stepExecutionId}" required="true" requiredMessage="#{bundle.EditBatchStepExecutionRequiredMessage_stepExecutionId}"/>
+                        <p:outputLabel value="#{bundle.EditBatchStepExecutionLabel_version}" for="version" />
+                        <p:inputText id="version" value="#{batchStepExecutionController.selected.version}" title="#{bundle.EditBatchStepExecutionTitle_version}" required="true" requiredMessage="#{bundle.EditBatchStepExecutionRequiredMessage_version}"/>
+                        <p:outputLabel value="#{bundle.EditBatchStepExecutionLabel_stepName}" for="stepName" />
+                        <p:inputText id="stepName" value="#{batchStepExecutionController.selected.stepName}" title="#{bundle.EditBatchStepExecutionTitle_stepName}" required="true" requiredMessage="#{bundle.EditBatchStepExecutionRequiredMessage_stepName}"/>
+                        <p:outputLabel value="#{bundle.EditBatchStepExecutionLabel_startTime}" for="startTime" />
+                        <p:calendar id="startTime" pattern="MM/dd/yyyy HH:mm:ss" value="#{batchStepExecutionController.selected.startTime}" title="#{bundle.EditBatchStepExecutionTitle_startTime}" required="true" requiredMessage="#{bundle.EditBatchStepExecutionRequiredMessage_startTime}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditBatchStepExecutionLabel_endTime}" for="endTime" />
+                        <p:calendar id="endTime" pattern="MM/dd/yyyy HH:mm:ss" value="#{batchStepExecutionController.selected.endTime}" title="#{bundle.EditBatchStepExecutionTitle_endTime}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditBatchStepExecutionLabel_status}" for="status" />
+                        <p:inputText id="status" value="#{batchStepExecutionController.selected.status}" title="#{bundle.EditBatchStepExecutionTitle_status}" />
+                        <p:outputLabel value="#{bundle.EditBatchStepExecutionLabel_commitCount}" for="commitCount" />
+                        <p:inputText id="commitCount" value="#{batchStepExecutionController.selected.commitCount}" title="#{bundle.EditBatchStepExecutionTitle_commitCount}" />
+                        <p:outputLabel value="#{bundle.EditBatchStepExecutionLabel_readCount}" for="readCount" />
+                        <p:inputText id="readCount" value="#{batchStepExecutionController.selected.readCount}" title="#{bundle.EditBatchStepExecutionTitle_readCount}" />
+                        <p:outputLabel value="#{bundle.EditBatchStepExecutionLabel_filterCount}" for="filterCount" />
+                        <p:inputText id="filterCount" value="#{batchStepExecutionController.selected.filterCount}" title="#{bundle.EditBatchStepExecutionTitle_filterCount}" />
+                        <p:outputLabel value="#{bundle.EditBatchStepExecutionLabel_writeCount}" for="writeCount" />
+                        <p:inputText id="writeCount" value="#{batchStepExecutionController.selected.writeCount}" title="#{bundle.EditBatchStepExecutionTitle_writeCount}" />
+                        <p:outputLabel value="#{bundle.EditBatchStepExecutionLabel_readSkipCount}" for="readSkipCount" />
+                        <p:inputText id="readSkipCount" value="#{batchStepExecutionController.selected.readSkipCount}" title="#{bundle.EditBatchStepExecutionTitle_readSkipCount}" />
+                        <p:outputLabel value="#{bundle.EditBatchStepExecutionLabel_writeSkipCount}" for="writeSkipCount" />
+                        <p:inputText id="writeSkipCount" value="#{batchStepExecutionController.selected.writeSkipCount}" title="#{bundle.EditBatchStepExecutionTitle_writeSkipCount}" />
+                        <p:outputLabel value="#{bundle.EditBatchStepExecutionLabel_processSkipCount}" for="processSkipCount" />
+                        <p:inputText id="processSkipCount" value="#{batchStepExecutionController.selected.processSkipCount}" title="#{bundle.EditBatchStepExecutionTitle_processSkipCount}" />
+                        <p:outputLabel value="#{bundle.EditBatchStepExecutionLabel_rollbackCount}" for="rollbackCount" />
+                        <p:inputText id="rollbackCount" value="#{batchStepExecutionController.selected.rollbackCount}" title="#{bundle.EditBatchStepExecutionTitle_rollbackCount}" />
+                        <p:outputLabel value="#{bundle.EditBatchStepExecutionLabel_exitCode}" for="exitCode" />
+                        <p:inputText id="exitCode" value="#{batchStepExecutionController.selected.exitCode}" title="#{bundle.EditBatchStepExecutionTitle_exitCode}" />
+                        <p:outputLabel value="#{bundle.EditBatchStepExecutionLabel_exitMessage}" for="exitMessage" />
+                        <p:inputText id="exitMessage" value="#{batchStepExecutionController.selected.exitMessage}" title="#{bundle.EditBatchStepExecutionTitle_exitMessage}" />
+                        <p:outputLabel value="#{bundle.EditBatchStepExecutionLabel_lastUpdated}" for="lastUpdated" />
+                        <p:calendar id="lastUpdated" pattern="MM/dd/yyyy HH:mm:ss" value="#{batchStepExecutionController.selected.lastUpdated}" title="#{bundle.EditBatchStepExecutionTitle_lastUpdated}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditBatchStepExecutionLabel_jobExecutionId}" for="jobExecutionId" />
+                        <p:selectOneMenu id="jobExecutionId" value="#{batchStepExecutionController.selected.jobExecutionId}" required="true" requiredMessage="#{bundle.EditBatchStepExecutionRequiredMessage_jobExecutionId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{batchJobExecutionController.itemsAvailableSelectOne}"
+                                           var="jobExecutionIdItem"
+                                           itemValue="#{jobExecutionIdItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditBatchStepExecutionLabel_batchStepExecutionContext}" for="batchStepExecutionContext" />
+                        <p:selectOneMenu id="batchStepExecutionContext" value="#{batchStepExecutionController.selected.batchStepExecutionContext}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{batchStepExecutionContextController.itemsAvailableSelectOne}"
+                                           var="batchStepExecutionContextItem"
+                                           itemValue="#{batchStepExecutionContextItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{batchStepExecutionController.update}" value="#{bundle.Save}" update="display,:BatchStepExecutionListForm:datalist,:growl" oncomplete="handleSubmit(args, 'BatchStepExecutionEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="BatchStepExecutionEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

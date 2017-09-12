@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="BatchJobExecutionCreateDlg" widgetVar="BatchJobExecutionCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateBatchJobExecutionTitle}">
+            <h:form id="BatchJobExecutionCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{batchJobExecutionController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateBatchJobExecutionLabel_jobExecutionId}" for="jobExecutionId" />
+                        <p:inputText id="jobExecutionId" value="#{batchJobExecutionController.selected.jobExecutionId}" title="#{bundle.CreateBatchJobExecutionTitle_jobExecutionId}" required="true" requiredMessage="#{bundle.CreateBatchJobExecutionRequiredMessage_jobExecutionId}"/>
+                        <p:outputLabel value="#{bundle.CreateBatchJobExecutionLabel_version}" for="version" />
+                        <p:inputText id="version" value="#{batchJobExecutionController.selected.version}" title="#{bundle.CreateBatchJobExecutionTitle_version}" />
+                        <p:outputLabel value="#{bundle.CreateBatchJobExecutionLabel_createTime}" for="createTime" />
+                        <p:calendar id="createTime" pattern="MM/dd/yyyy HH:mm:ss" value="#{batchJobExecutionController.selected.createTime}" title="#{bundle.EditBatchJobExecutionTitle_createTime}" required="true" requiredMessage="#{bundle.EditBatchJobExecutionRequiredMessage_createTime}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateBatchJobExecutionLabel_startTime}" for="startTime" />
+                        <p:calendar id="startTime" pattern="MM/dd/yyyy HH:mm:ss" value="#{batchJobExecutionController.selected.startTime}" title="#{bundle.EditBatchJobExecutionTitle_startTime}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateBatchJobExecutionLabel_endTime}" for="endTime" />
+                        <p:calendar id="endTime" pattern="MM/dd/yyyy HH:mm:ss" value="#{batchJobExecutionController.selected.endTime}" title="#{bundle.EditBatchJobExecutionTitle_endTime}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateBatchJobExecutionLabel_status}" for="status" />
+                        <p:inputText id="status" value="#{batchJobExecutionController.selected.status}" title="#{bundle.CreateBatchJobExecutionTitle_status}" />
+                        <p:outputLabel value="#{bundle.CreateBatchJobExecutionLabel_exitCode}" for="exitCode" />
+                        <p:inputText id="exitCode" value="#{batchJobExecutionController.selected.exitCode}" title="#{bundle.CreateBatchJobExecutionTitle_exitCode}" />
+                        <p:outputLabel value="#{bundle.CreateBatchJobExecutionLabel_exitMessage}" for="exitMessage" />
+                        <p:inputText id="exitMessage" value="#{batchJobExecutionController.selected.exitMessage}" title="#{bundle.CreateBatchJobExecutionTitle_exitMessage}" />
+                        <p:outputLabel value="#{bundle.CreateBatchJobExecutionLabel_lastUpdated}" for="lastUpdated" />
+                        <p:calendar id="lastUpdated" pattern="MM/dd/yyyy HH:mm:ss" value="#{batchJobExecutionController.selected.lastUpdated}" title="#{bundle.EditBatchJobExecutionTitle_lastUpdated}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateBatchJobExecutionLabel_jobConfigurationLocation}" for="jobConfigurationLocation" />
+                        <p:inputText id="jobConfigurationLocation" value="#{batchJobExecutionController.selected.jobConfigurationLocation}" title="#{bundle.CreateBatchJobExecutionTitle_jobConfigurationLocation}" />
+                        <p:outputLabel value="#{bundle.CreateBatchJobExecutionLabel_batchJobExecutionContext}" for="batchJobExecutionContext" />
+                        <p:selectOneMenu id="batchJobExecutionContext" value="#{batchJobExecutionController.selected.batchJobExecutionContext}" >
+                            <f:selectItems value="#{batchJobExecutionContextController.itemsAvailableSelectOne}"
+                                           var="batchJobExecutionContextItem"
+                                           itemValue="#{batchJobExecutionContextItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateBatchJobExecutionLabel_jobInstanceId}" for="jobInstanceId" />
+                        <p:selectOneMenu id="jobInstanceId" value="#{batchJobExecutionController.selected.jobInstanceId}" required="true" requiredMessage="#{bundle.EditBatchJobExecutionRequiredMessage_jobInstanceId}">
+                            <f:selectItems value="#{batchJobInstanceController.itemsAvailableSelectOne}"
+                                           var="jobInstanceIdItem"
+                                           itemValue="#{jobInstanceIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{batchJobExecutionController.create}" value="#{bundle.Save}" update="display,:BatchJobExecutionListForm:datalist,:growl" oncomplete="handleSubmit(args,'BatchJobExecutionCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="BatchJobExecutionCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

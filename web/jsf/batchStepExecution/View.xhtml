@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="BatchStepExecutionViewDlg" widgetVar="BatchStepExecutionViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewBatchStepExecutionTitle}">
+            <h:form id="BatchStepExecutionViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{batchStepExecutionController.selected != null}">
+                        <h:outputText value="#{bundle.ViewBatchStepExecutionLabel_stepExecutionId}"/>
+                        <h:outputText value="#{batchStepExecutionController.selected.stepExecutionId}" title="#{bundle.ViewBatchStepExecutionTitle_stepExecutionId}"/>
+                        <h:outputText value="#{bundle.ViewBatchStepExecutionLabel_version}"/>
+                        <h:outputText value="#{batchStepExecutionController.selected.version}" title="#{bundle.ViewBatchStepExecutionTitle_version}"/>
+                        <h:outputText value="#{bundle.ViewBatchStepExecutionLabel_stepName}"/>
+                        <h:outputText value="#{batchStepExecutionController.selected.stepName}" title="#{bundle.ViewBatchStepExecutionTitle_stepName}"/>
+                        <h:outputText value="#{bundle.ViewBatchStepExecutionLabel_startTime}"/>
+                        <h:outputText value="#{batchStepExecutionController.selected.startTime}" title="#{bundle.ViewBatchStepExecutionTitle_startTime}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewBatchStepExecutionLabel_endTime}"/>
+                        <h:outputText value="#{batchStepExecutionController.selected.endTime}" title="#{bundle.ViewBatchStepExecutionTitle_endTime}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewBatchStepExecutionLabel_status}"/>
+                        <h:outputText value="#{batchStepExecutionController.selected.status}" title="#{bundle.ViewBatchStepExecutionTitle_status}"/>
+                        <h:outputText value="#{bundle.ViewBatchStepExecutionLabel_commitCount}"/>
+                        <h:outputText value="#{batchStepExecutionController.selected.commitCount}" title="#{bundle.ViewBatchStepExecutionTitle_commitCount}"/>
+                        <h:outputText value="#{bundle.ViewBatchStepExecutionLabel_readCount}"/>
+                        <h:outputText value="#{batchStepExecutionController.selected.readCount}" title="#{bundle.ViewBatchStepExecutionTitle_readCount}"/>
+                        <h:outputText value="#{bundle.ViewBatchStepExecutionLabel_filterCount}"/>
+                        <h:outputText value="#{batchStepExecutionController.selected.filterCount}" title="#{bundle.ViewBatchStepExecutionTitle_filterCount}"/>
+                        <h:outputText value="#{bundle.ViewBatchStepExecutionLabel_writeCount}"/>
+                        <h:outputText value="#{batchStepExecutionController.selected.writeCount}" title="#{bundle.ViewBatchStepExecutionTitle_writeCount}"/>
+                        <h:outputText value="#{bundle.ViewBatchStepExecutionLabel_readSkipCount}"/>
+                        <h:outputText value="#{batchStepExecutionController.selected.readSkipCount}" title="#{bundle.ViewBatchStepExecutionTitle_readSkipCount}"/>
+                        <h:outputText value="#{bundle.ViewBatchStepExecutionLabel_writeSkipCount}"/>
+                        <h:outputText value="#{batchStepExecutionController.selected.writeSkipCount}" title="#{bundle.ViewBatchStepExecutionTitle_writeSkipCount}"/>
+                        <h:outputText value="#{bundle.ViewBatchStepExecutionLabel_processSkipCount}"/>
+                        <h:outputText value="#{batchStepExecutionController.selected.processSkipCount}" title="#{bundle.ViewBatchStepExecutionTitle_processSkipCount}"/>
+                        <h:outputText value="#{bundle.ViewBatchStepExecutionLabel_rollbackCount}"/>
+                        <h:outputText value="#{batchStepExecutionController.selected.rollbackCount}" title="#{bundle.ViewBatchStepExecutionTitle_rollbackCount}"/>
+                        <h:outputText value="#{bundle.ViewBatchStepExecutionLabel_exitCode}"/>
+                        <h:outputText value="#{batchStepExecutionController.selected.exitCode}" title="#{bundle.ViewBatchStepExecutionTitle_exitCode}"/>
+                        <h:outputText value="#{bundle.ViewBatchStepExecutionLabel_exitMessage}"/>
+                        <h:outputText value="#{batchStepExecutionController.selected.exitMessage}" title="#{bundle.ViewBatchStepExecutionTitle_exitMessage}"/>
+                        <h:outputText value="#{bundle.ViewBatchStepExecutionLabel_lastUpdated}"/>
+                        <h:outputText value="#{batchStepExecutionController.selected.lastUpdated}" title="#{bundle.ViewBatchStepExecutionTitle_lastUpdated}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewBatchStepExecutionLabel_jobExecutionId}"/>
+                        <h:outputText value="#{batchStepExecutionController.selected.jobExecutionId}" title="#{bundle.ViewBatchStepExecutionTitle_jobExecutionId}"/>
+                        <h:outputText value="#{bundle.ViewBatchStepExecutionLabel_batchStepExecutionContext}"/>
+                        <h:outputText value="#{batchStepExecutionController.selected.batchStepExecutionContext}" title="#{bundle.ViewBatchStepExecutionTitle_batchStepExecutionContext}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="BatchStepExecutionViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

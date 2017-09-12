@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="BatchJobExecutionContextViewDlg" widgetVar="BatchJobExecutionContextViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewBatchJobExecutionContextTitle}">
+            <h:form id="BatchJobExecutionContextViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{batchJobExecutionContextController.selected != null}">
+                        <h:outputText value="#{bundle.ViewBatchJobExecutionContextLabel_jobExecutionId}"/>
+                        <h:outputText value="#{batchJobExecutionContextController.selected.jobExecutionId}" title="#{bundle.ViewBatchJobExecutionContextTitle_jobExecutionId}"/>
+                        <h:outputText value="#{bundle.ViewBatchJobExecutionContextLabel_shortContext}"/>
+                        <h:outputText value="#{batchJobExecutionContextController.selected.shortContext}" title="#{bundle.ViewBatchJobExecutionContextTitle_shortContext}"/>
+                        <h:outputText value="#{bundle.ViewBatchJobExecutionContextLabel_serializedContext}"/>
+                        <h:outputText value="#{batchJobExecutionContextController.selected.serializedContext}" title="#{bundle.ViewBatchJobExecutionContextTitle_serializedContext}"/>
+                        <h:outputText value="#{bundle.ViewBatchJobExecutionContextLabel_batchJobExecution}"/>
+                        <h:outputText value="#{batchJobExecutionContextController.selected.batchJobExecution}" title="#{bundle.ViewBatchJobExecutionContextTitle_batchJobExecution}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="BatchJobExecutionContextViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

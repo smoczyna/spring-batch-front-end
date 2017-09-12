@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="BatchStepExecutionSeqEditDlg" widgetVar="BatchStepExecutionSeqEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditBatchStepExecutionSeqTitle}">
+            <h:form id="BatchStepExecutionSeqEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{batchStepExecutionSeqController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditBatchStepExecutionSeqLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{batchStepExecutionSeqController.selected.id}" title="#{bundle.EditBatchStepExecutionSeqTitle_id}" required="true" requiredMessage="#{bundle.EditBatchStepExecutionSeqRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditBatchStepExecutionSeqLabel_dummy}" for="dummy" />
+                        <p:inputText id="dummy" value="#{batchStepExecutionSeqController.selected.dummy}" title="#{bundle.EditBatchStepExecutionSeqTitle_dummy}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{batchStepExecutionSeqController.update}" value="#{bundle.Save}" update="display,:BatchStepExecutionSeqListForm:datalist,:growl" oncomplete="handleSubmit(args, 'BatchStepExecutionSeqEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="BatchStepExecutionSeqEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

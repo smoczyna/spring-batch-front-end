@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="BatchJobExecutionViewDlg" widgetVar="BatchJobExecutionViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewBatchJobExecutionTitle}">
+            <h:form id="BatchJobExecutionViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{batchJobExecutionController.selected != null}">
+                        <h:outputText value="#{bundle.ViewBatchJobExecutionLabel_jobExecutionId}"/>
+                        <h:outputText value="#{batchJobExecutionController.selected.jobExecutionId}" title="#{bundle.ViewBatchJobExecutionTitle_jobExecutionId}"/>
+                        <h:outputText value="#{bundle.ViewBatchJobExecutionLabel_version}"/>
+                        <h:outputText value="#{batchJobExecutionController.selected.version}" title="#{bundle.ViewBatchJobExecutionTitle_version}"/>
+                        <h:outputText value="#{bundle.ViewBatchJobExecutionLabel_createTime}"/>
+                        <h:outputText value="#{batchJobExecutionController.selected.createTime}" title="#{bundle.ViewBatchJobExecutionTitle_createTime}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewBatchJobExecutionLabel_startTime}"/>
+                        <h:outputText value="#{batchJobExecutionController.selected.startTime}" title="#{bundle.ViewBatchJobExecutionTitle_startTime}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewBatchJobExecutionLabel_endTime}"/>
+                        <h:outputText value="#{batchJobExecutionController.selected.endTime}" title="#{bundle.ViewBatchJobExecutionTitle_endTime}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewBatchJobExecutionLabel_status}"/>
+                        <h:outputText value="#{batchJobExecutionController.selected.status}" title="#{bundle.ViewBatchJobExecutionTitle_status}"/>
+                        <h:outputText value="#{bundle.ViewBatchJobExecutionLabel_exitCode}"/>
+                        <h:outputText value="#{batchJobExecutionController.selected.exitCode}" title="#{bundle.ViewBatchJobExecutionTitle_exitCode}"/>
+                        <h:outputText value="#{bundle.ViewBatchJobExecutionLabel_exitMessage}"/>
+                        <h:outputText value="#{batchJobExecutionController.selected.exitMessage}" title="#{bundle.ViewBatchJobExecutionTitle_exitMessage}"/>
+                        <h:outputText value="#{bundle.ViewBatchJobExecutionLabel_lastUpdated}"/>
+                        <h:outputText value="#{batchJobExecutionController.selected.lastUpdated}" title="#{bundle.ViewBatchJobExecutionTitle_lastUpdated}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewBatchJobExecutionLabel_jobConfigurationLocation}"/>
+                        <h:outputText value="#{batchJobExecutionController.selected.jobConfigurationLocation}" title="#{bundle.ViewBatchJobExecutionTitle_jobConfigurationLocation}"/>
+                        <h:outputText value="#{bundle.ViewBatchJobExecutionLabel_batchJobExecutionContext}"/>
+                        <h:outputText value="#{batchJobExecutionController.selected.batchJobExecutionContext}" title="#{bundle.ViewBatchJobExecutionTitle_batchJobExecutionContext}"/>
+                        <h:outputText value="#{bundle.ViewBatchJobExecutionLabel_jobInstanceId}"/>
+                        <h:outputText value="#{batchJobExecutionController.selected.jobInstanceId}" title="#{bundle.ViewBatchJobExecutionTitle_jobInstanceId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="BatchJobExecutionViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
